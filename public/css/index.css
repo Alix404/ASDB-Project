@@ -1,0 +1,79 @@
+body {
+    height: 99vh;
+    background-color: #081F2B;
+    color: #C9D18E;
+}
+
+body a {
+    color: #CEAF62;
+}
+
+body a:hover {
+    color: #081F2B;
+}
+
+body #btn-navigation {
+    background-color: #081F2B;
+    color: #CEAF62;
+}
+
+body #navigation {
+    background-color: #426A4C;
+}
+
+#posts {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#signIn-btn {
+    align-self: center;
+    width: fit-content;
+    border: none;
+    color: #f1f1f1;
+    background-color: #ACC78E;
+}
+
+#signIn-btn:hover {
+    border: none;
+    color: #081F2B;
+    background-color: #426A4C;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background-color: #426A4C;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#danger {
+    width: fit-content;
+}
+
+#postsCard {
+    background-color: #426A4C;
+}
+
+body ::-webkit-scrollbar {
+
+    width: 12px;
+}
+
+body ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+body ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+body ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.table {
+    background-color: #CEAF62;
+}
