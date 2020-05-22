@@ -28,9 +28,9 @@ class PostsController extends AppController
             $this->notFound();
         }
 
-        $articles = $this->Post->lastByCategory($_GET['id']);
+        $posts = $this->Post->lastByCategory($_GET['id']);
         $categories = $this->Category->all();
-        $this->render('posts.category', compact('articles', 'categories', 'category'));
+        $this->render('posts.category', compact('posts', 'categories', 'category'));
 
 
     }

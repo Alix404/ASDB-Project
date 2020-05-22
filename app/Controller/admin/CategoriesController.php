@@ -2,7 +2,6 @@
 
 namespace App\Controller\Admin;
 
-use App;
 use Core\HTML\BootstrapForm;
 
 class CategoriesController extends AppController
@@ -22,7 +21,8 @@ class CategoriesController extends AppController
             ]);
             return $this->index();
         }
-        $this->render('admin.categories.edit', compact( 'form'));
+        $form = new BootstrapForm($_POST);
+        $this->render('admin.categories.add', compact('form'));
     }
 
     public function index()

@@ -1,4 +1,6 @@
-<h1>Réinsialiser mon mot de passe</h1>
+<div class="row title">
+    <h1>Réinisialiser mon mot de passe</h1>
+</div>
 
 <form action="" method="post">
 
@@ -12,6 +14,6 @@
         <input type="password" name="confirm_password" class="form-control"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Réinsialiser mon mot de passe</button>
+    <button type="submit" class="btn btn-primary form-button-info">Réinisialiser mon mot de passe</button>
 </form>
 <?php

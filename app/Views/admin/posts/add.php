@@ -5,7 +5,7 @@ use Core\HTML\BootstrapForm;
 $postTable = App::getInstance()->getTable('Post');
 
 if (!empty($_POST)) {
-    $result = $postTable->update($_GET['id'], [
+    $result = $postTable->create([
         'titre' => $_POST['titre'],
         'contenu' => $_POST['contenu'],
         'categories_id' => $_POST['categories_id']
@@ -17,9 +17,8 @@ if (!empty($_POST)) {
     }
 }
 
-$post = $postTable->find($_GET['id']);
 $categories = App::getInstance()->getTable('Category')->extract('id', 'titre');
-$form = new BootstrapForm($post);
+$form = new BootstrapForm($_POST);
 ?>
 
 <form method="post">

@@ -1,4 +1,6 @@
-<h1>Récupération du mot de passe</h1>
+<div class="row title">
+    <h1>Récupération du mot de passe</h1>
+</div>
 
 <form action="" method="post">
 
@@ -7,5 +9,5 @@
         <input type="email" name="email" class="form-control"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Reinsialiser mon mot de passe</button>
+    <button type="submit" class="btn btn-primary form-button-info">Reinsialiser mon mot de passe</button>
 </form>

@@ -3,9 +3,9 @@ Variable définition
  */
 
 :root {
-    --text-color: #F4F9F5;
-    --title-text-color: #F3B353;
+    --text-color: #465C73;
     --container-bg-color: #F4F9F5;
+    --title-color: #B85E62;
     --background-color: #ACB9C1;
     --important-bg-color: #465C73;
 
@@ -13,9 +13,14 @@ Variable définition
     --link-hover-color: #b85e62;
 
     --card-bg-color: #F4F9F5;
-    --card-text-color: #465C73;
+    --card-title-color: #F3B353;
     --card-link-color: #9690AE;
     --card-link-hover-color: #927FC0;
+
+    --btn-add-color: #64AA6F;
+    --btn-del-color: #B64D40;
+    --btn-edit-color: #F2D88A;
+    --btn-info-color: #4B8591;
 
 }
 
@@ -25,12 +30,31 @@ General style
 
 body {
     background: var(--background-color);
-    color: var(--text-color)
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+h1, h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: var(--title-color);
+}
+
+.title {
+    margin-bottom: 50px;
+    justify-content: center;
 }
 
 .body-container {
     height: 100vh;
     background: var(--container-bg-color);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
 }
 
 
@@ -44,7 +68,7 @@ Navigation style
 }
 
 .navigation .navigation-toggler {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(184, 94, 98, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(243, 179, 83, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E")
 }
 
 .navigation a {
@@ -62,19 +86,22 @@ Card style
 
 .card-header {
     background: var(--important-bg-color);
-    color: var(--title-text-color);
+    color: var(--card-title-color);
 }
 
 .postsCard,
 .categoryCard {
     background: var(--card-bg-color);
-    margin-bottom: 10px;
-    margin-top: 10px;
+}
+
+.postsCard .card {
+    margin-bottom: 15px;
+    margin-top: 15px;
 }
 
 .postsCard .card-body,
 .categoryCard .card-body {
-    color: var(--card-text-color);
+    color: var(--text-color);
 }
 
 .postsCard a,
@@ -83,17 +110,84 @@ Card style
     transition: all 0.3s;
 }
 
-.postsCard a:hover,
+.postsCard .card a:hover,
 .categoryCard a:hover {
     color: var(--card-link-hover-color);
 }
 
-.postsCard:first-child,
-.categoryCard:first-child {
+.postsCard .card:first-child,
+.categoryCard .card:first-child {
     margin-top: 0;
 }
 
-.postsCard:last-child,
-.categoryCard:last-child {
+.postsCard .card:last-child,
+.categoryCard .Card:last-child {
     margin-bottom: 0;
+}
+
+/**
+Form style
+ */
+
+.form-link {
+    color: #88acab;
+    transition: color 0.3s;
+}
+
+.form-link:hover {
+    color: #4B8591;
+}
+
+.form-button-info {
+    color: #F4F9F5;
+    background: var(--btn-info-color);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
+.form-button-add {
+    color: #F4F9F5;
+    background: var(--btn-add-color);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
+.form-button-del {
+    color: #F4F9F5;
+    background: var(--btn-del-color);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
+.form-button-edit {
+    color: #F4F9F5;
+    background: var(--btn-edit-color);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
+.form-button-info:hover {
+    background: transparent;
+    border: 2px solid var(--btn-info-color);
+    color: #465C73;
+}
+
+.form-button-add:hover {
+    background: transparent;
+    border: 2px solid var(--btn-add-color);
+    color: #465C73;
+}
+
+.form-button-del:hover {
+    background: transparent;
+    border: 2px solid var(--btn-del-color);
+    color: #465C73;
+
+}
+
+.form-button-edit:hover {
+    background: transparent;
+    border: 2px solid var(--btn-edit-color);
+    color: #465C73;
+
 }

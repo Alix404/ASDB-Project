@@ -1,5 +1,7 @@
 <?php
 
+use Core\Session\Session;
+
 define('ROOT', dirname(__DIR__));
 
 require ROOT . '/app/App.php';
@@ -14,8 +16,15 @@ if (isset($_GET['p'])) {
 
 $page = explode('.', $page);
 if ($page[0] == 'admin') {
-    $controller = '\App\Controller\Admin\\' . ucfirst($page[1]) . 'Controller';
-    $action = $page[2];
+    $auth = Session::getInstance()->read('auth');
+    $authName = explode('_', $auth->username);
+    if ($authName[0] === 'Admin') {
+        $controller = '\App\Controller\Admin\\' . ucfirst($page[1]) . 'Controller';
+        $action = $page[2];
+    } else {
+        Session::getInstance()->setFlash('danger', "Vous n'êtes pas authorisé à vous rendre sur cette page");
+        App::getInstance()->redirect('posts.index');
+    }
 } else {
     $controller = '\App\Controller\\' . ucfirst($page[0]) . 'Controller';
     $action = $page[1];

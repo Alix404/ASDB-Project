@@ -5,7 +5,9 @@ use Core\Session\Session;
 ?>
 
 
-<h1>Bonjour <?= Session::getInstance()->read('auth')->username; ?></h1>
+<div class="row title">
+    <h1>Bonjour <?= Session::getInstance()->read('auth')->username; ?></h1>
+</div>
 
 <form action="" method="post">
     <div class="form-group">
@@ -13,8 +15,9 @@ use Core\Session\Session;
     </div>
 
     <div class="form-group">
-        <input type="password" name="confirm_password" placeholder="Confirmation du nouveau mot de passe" class="form-control"/>
+        <input type="password" name="confirm_password" placeholder="Confirmation du nouveau mot de passe"
+               class="form-control"/>
     </div>
-    <button type="submit" class="btn btn-primary">Changer de mot de passe</button>
+    <button type="submit" class="btn btn-primary form-button-info">Changer de mot de passe</button>
 </form>
 

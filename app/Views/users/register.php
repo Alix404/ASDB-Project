@@ -10,7 +10,9 @@ if (!empty($errors)): ?>
         </ul>
     </div>
 <?php endif; ?>
-
+<div class="row title">
+    <h1>Inscription</h1>
+</div>
 
 <form action="" method="post">
 
@@ -19,5 +21,5 @@ if (!empty($errors)): ?>
     <?= $form->input('password', 'Mot de passe', ['type' => 'password', 'required' => true]); ?>
     <?= $form->input('confirm_password', 'Confirmer votre mot de passe', ['type' => 'password', 'required' => true]); ?>
 
-    <button type="submit" class="btn btn-primary">M'inscrire</button>
+    <button type="submit" class="btn btn-primary form-button-info">M'inscrire</button>
 </form>

@@ -10,7 +10,7 @@ class BootstrapForm extends Form
         $labelnorm = '<label for="' . $name . '">' . $label . '</label>';
         $required = isset($option["required"]) ? 'required' : '';
         if ($type === 'textarea') {
-            $input = '<textarea class="form-control" id="' . $name . '" name="' . $name . '">' . $this->getValue($name) . ' />';
+            $input = '<textarea class="form-control" id="' . $name . '" name="' . $name . '">' . $this->getValue($name) . '</textarea>';
         } elseif ($type === 'checkbox') {
             $labelcheck = '<label class="form-check-label" for="' . $name . '">' . $label . '</label>';
             $input = '<input type="checkbox" class="form-check-input" name="'. $name .'" id="' . $name . '"value="1" />';
@@ -54,7 +54,7 @@ class BootstrapForm extends Form
     public function link($location, $linkMsg)
     {
         $location = "index.php?p=$location";
-        $link = '<a href="' . $location . '">' . $linkMsg . '</a>';
+        $link = '<a class="form-link" href="' . $location . '">' . $linkMsg . '</a>';
         return $this->surround($link);
     }
 

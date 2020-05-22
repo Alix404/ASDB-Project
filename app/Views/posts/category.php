@@ -1,19 +1,21 @@
+<div class="row title">
+    <h1 class="title"><?= $category->titre ?></h1>
+</div>
+
 <div class="row">
     <div class="col-sm-12 col-lg-8 postsCard">
         <?php
-        if (!empty($articles)): ?>
-            <div class="card">
-                <div class="card-body">
-                    <?php
-
-                    foreach ($articles as $post):?>
-
-                        <h2><a href="<?= $post->url; ?>"> <?= $post->titre; ?></a></h2>
+        if (!empty($posts)): ?>
+            <?php foreach ($posts as $post): ?>
+                <div class="card">
+                    <h2 class="card-header"><?= $post->titre; ?></h2>
+                    <div class="card-body">
                         <p><em><?= $post->categorie; ?></em></p>
                         <p><?= $post->extrait; ?></p>
-                    <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
+
         <?php else: ?>
             <div class="card">
                 <h1 class="card-header"><?= $category->titre; ?></h1>

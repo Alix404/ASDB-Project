@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use Core\HTML\BootstrapForm;
+use Core\Session\Session;
 
 class PostsController extends AppController
 {
@@ -33,7 +34,7 @@ class PostsController extends AppController
         $this->loadModel('Category');
         $categories = $this->Category->extract('id', 'titre');
         $form = new BootstrapForm($_POST);
-        $this->render('admin.posts.edit', compact('categories', 'form'));
+        $this->render('admin.posts.add', compact('categories', 'form'));
     }
 
     public function index()
@@ -67,6 +68,5 @@ class PostsController extends AppController
             $result = $this->Post->delete($_POST['id']);
             return $this->index();
         }
-
     }
 }
