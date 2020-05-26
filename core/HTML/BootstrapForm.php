@@ -10,7 +10,7 @@ class BootstrapForm extends Form
         $labelnorm = '<label for="' . $name . '">' . $label . '</label>';
         $required = isset($option["required"]) ? 'required' : '';
         if ($type === 'textarea') {
-            $input = '<textarea class="form-control" id="' . $name . '" name="' . $name . '">' . $this->getValue($name) . '</textarea>';
+            $input = '<textarea class="form-control" id="' . $name . '" name="' . $name .  $required .'">' . $this->getValue($name) .'</textarea>';
         } elseif ($type === 'checkbox') {
             $labelcheck = '<label class="form-check-label" for="' . $name . '">' . $label . '</label>';
             $input = '<input type="checkbox" class="form-check-input" name="'. $name .'" id="' . $name . '"value="1" />';

@@ -13,11 +13,17 @@
                     <a href="index.php?p=posts.index">revenir à l'Accueil</a>
                 </div>
             </div>
+            <form action="" id="form-comment" method="post">
+                <h4 class="form-title">Poster un commentaire ?</h4>
+                <?= $form->input('content', 'Écrivez votre commentaire', ['type' => 'textarea']) ?>
+                <input type="hidden" name="parent_id" value="0" id="parent_id">
+                <button type="submit" class="btn form-button-add">Commenter</button>
+            </form>
             <div class="row comment-title">
                 <h1>Les commentaires</h1>
             </div>
             <?php foreach ($comments as $comment): ?>
-                <?php require ROOT . '/app/Views/template/comment.php' ?>
+                <?php require ROOT . '/app/Views/template/admin/comment.php' ?>
             <?php endforeach; ?>
         </div>
     </div>
@@ -33,6 +39,12 @@
                     <a href="index.php?p=posts.index">revenir à l'Accueil</a>
                 </div>
             </div>
+            <form action="" id="form-comment" method="post">
+                <h4 class="form-title">Poster un commentaire ?</h4>
+                <?= $form->input('content', 'Écrivez votre commentaire', ['type' => 'textarea']) ?>
+                <input type="hidden" name="parent_id" value="0" id="parent_id">
+                <button type="submit" class="btn form-button-add">Commenter</button>
+            </form>
         </div>
     </div>
 <?php endif; ?>

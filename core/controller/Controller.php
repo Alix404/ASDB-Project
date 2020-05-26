@@ -18,12 +18,14 @@ class Controller
             require($this->viewPath . str_replace('.', '/', $view) . '.php');
             $content = ob_get_clean();
             require($this->viewPath . 'template/' . 'users-default.php');
+            exit();
         } else {
             ob_start();
             extract($variables);
             require($this->viewPath . str_replace('.', '/', $view) . '.php');
             $content = ob_get_clean();
             require($this->viewPath . 'template/' . $this->template . '.php');
+            exit();
         }
 
     }

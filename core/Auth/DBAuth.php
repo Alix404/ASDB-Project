@@ -2,9 +2,7 @@
 
 namespace Core\Auth;
 
-use App;
 use Core\Database\Database;
-use Core\Session\Session;
 use Core\String\Str;
 
 class DBAuth

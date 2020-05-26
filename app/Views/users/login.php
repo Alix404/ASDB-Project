@@ -16,5 +16,5 @@
 
     <?= $form->input('remember', 'Se souvenir de moi', ['type' => 'checkbox']) ?>
 
-    <button type="submit" class="btn btn-primary form-button-info">Se connecter</button>
+    <button type="submit" class="btn form-button-info">Se connecter</button>
 </form>

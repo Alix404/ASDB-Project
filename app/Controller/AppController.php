@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App;
 use Core\Controller\Controller;
-use Core\Database\Database;
 
 class AppController extends Controller
 {

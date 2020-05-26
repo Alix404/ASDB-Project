@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use Core\HTML\BootstrapForm;
-use Core\Session\Session;
 
 class PostsController extends AppController
 {

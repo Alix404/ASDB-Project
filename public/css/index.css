@@ -54,7 +54,6 @@ h1, h5 {
 .body-container {
     height: 100vh;
     background: var(--container-bg-color);
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75);
 }
 
 
@@ -159,6 +158,13 @@ Form style
     transition: all 0.4s;
 }
 
+.text-right .form-button-del {
+    color: #F4F9F5;
+    background: var(--btn-del-color);
+    border: 2px solid transparent;
+    transition: all 0.4s;
+}
+
 .form-button-edit {
     color: #F4F9F5;
     background: var(--btn-edit-color);
@@ -182,12 +188,39 @@ Form style
     background: transparent;
     border: 2px solid var(--btn-del-color);
     color: #465C73;
-
+}
+.text-right .form-button-del:hover {
+    background: transparent;
+    border: 2px solid var(--btn-del-color);
+    color: #465C73;
 }
 
 .form-button-edit:hover {
     background: transparent;
     border: 2px solid var(--btn-edit-color);
     color: #465C73;
+
+}
+
+/**
+Comment style
+ */
+
+.comment-title {
+    justify-content: center;
+}
+.comment-card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/**
+Category form style
+ */
+
+.category-news-form {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
 
 }
