@@ -152,14 +152,15 @@ class UsersController extends AppController
             $errors = $this->User->validateRegister($_POST['username'], $_POST['password'], $_POST['email']);
             if (empty($errors)) {
                 $user = App::getAuth()->register($_POST['username'], $_POST['password'], $_POST['email']);
-                Mail::sendMail(
-                    $_POST['email'],
-                    "Confirmer votre compte",
-                    "Afin de validé votre inscription, veuillez suivre ce lien",
-                    "users.confirm",
-                    "Confirmer mon compte",
-                    $user->id,
-                    $user->confirmation_token
+                Mail::sendMail([
+                        'email' => $_POST['email'],
+                        'subject' => "Confirmer votre compte",
+                        'message' => "Afin de validé votre inscription, veuillez suivre ce lien",
+                        'link' => "users.confirm",
+                        'link_message' => "Confirmer mon compte",
+                        'user_id' => $user->id,
+                        'token' => $user->confirmation_token
+                    ]
                 );
                 Session::getInstance()->setFlash('success', "Un email de confirmation, vous à été envoyé");
                 App::getInstance()->redirect('users.login');
@@ -209,14 +210,15 @@ class UsersController extends AppController
                 if ($user) {
                     $reset_token = Str::str_random(60);
                     $db->prepare('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?', [$reset_token, $user->id]);
-                    Mail::sendMail(
-                        $_POST['email'],
-                        "Réinitialisation de votre mot de passe",
-                        "Pour réinisialisé votre mot de passe, cliquer sur ce lien",
-                        "users.reset",
-                        "Réinsialiser mon mot de passe",
-                        $user->id,
-                        $reset_token
+                    Mail::sendMail([
+                            'email' => $_POST['email'],
+                            'subject' => "Réinitialisation de votre mot de passe",
+                            'message' => "Pour réinisialisé votre mot de passe, cliquer sur ce lien",
+                            'link' => "users.reset",
+                            'link_message' => "Réinsialiser mon mot de passe",
+                            'user_id' => $user->id,
+                            'token' => $reset_token
+                        ]
                     );
                     Session::getInstance()->setFlash('success', 'Les instructions du rappel de mot de passe vous ont été envoyées par email');
                     App::getInstance()->redirect('users.login');

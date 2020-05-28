@@ -31,14 +31,11 @@ class PostsController extends AppController
 
                 $user = Session::getInstance()->read('auth');
                 $this->Subscription->subscribe($user->id, $_POST['category_id']);
-                Mail::sendMail
-                (
-                    $user->email,
-                    'Nouvelle abonnement',
-                    "Vous vous êtes abonnés à la catégorie <em><strong>" . $_POST['category_name'] . "</strong></em> en provenance du site web A simple dev's blog, vous recevrez désormais toutes les actualités concernant cette catégorie. À tout moment vous pourrez vous désabonnez en retournant sur le site et en vous rendant sur la page de la catégorie souhaitée.",
-                    'posts.show',
-                    "Retourner à l'accueil"
-                );
+                Mail::sendMail([
+                    'email' => $user->email,
+                    'subject' => 'Nouvelle abonnement',
+                    'message' => "Vous vous êtes abonnés à la catégorie <em><strong>" . $_POST['category_name'] . "</strong></em> en provenance du site web A simple dev's blog, vous recevrez désormais toutes les actualités concernant cette catégorie. À tout moment vous pourrez vous désabonnez en retournant sur le site et en vous rendant sur la page de la catégorie souhaitée.",
+                ]);
                 $posts = $this->Post->lastByCategory($_GET['id']);
                 $categories = $this->Category->all();
                 $this->index();
