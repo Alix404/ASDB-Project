@@ -4,6 +4,7 @@
 
 <form action="" class="category-news-form" method="post">
     <input type="hidden" name="category_id" value="<?= $category->id ?>">
+    <input type="hidden" name="category_name" value="<?= $category->titre ?>">
     <button type="submit" class="btn form-button-info">M'abonner à cette catégorie</button>
 </form>
 

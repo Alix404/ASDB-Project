@@ -15,6 +15,7 @@ class UsersController extends AppController
     {
         parent::__construct();
         $this->loadModel('User');
+        $this->loadModel('Subscription');
     }
 
     public function confirm()
