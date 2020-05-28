@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App;
-use Core\HTML\BootstrapForm;
 use Core\Mail\Mail;
 use Core\Session\Session;
 
@@ -77,24 +76,11 @@ class PostsController extends AppController
         $comments = $this->sortComments();
         if ($comments) {
             if ($user != null) {
-                $adminName = explode('_', $user->username);
-                if ($adminName[0] == 'Admin' && $user->id == 1) {
-                    $this->showComments('admin.posts.show', $articles, $comments);
-                } else {
-                    $this->showComments('users.show', $articles, $comments);
-
-                }
+                $this->showComments('users.show', $articles, $comments);
             }
             $this->showComments('posts.show', $articles, $comments, false);
-        } elseif
-        ($user != null) {
-            $adminName = explode('_', $user->username);
-            if ($adminName[0] == 'Admin' && $user->id == 1) {
-                $this->showComments('admin.posts.show', $articles, null);
-            } else {
-                $this->showComments('users.show', $articles, null);
-            }
-
+        } elseif ($user != null) {
+            $this->showComments('users.show', $articles, null);
         } else {
             $this->showComments('posts.show', $articles, null, false);
         }

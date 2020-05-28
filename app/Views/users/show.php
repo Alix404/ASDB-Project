@@ -1,3 +1,16 @@
+<?php
+
+use Core\Session\Session;
+
+$user = Session::getInstance()->read('auth');
+$adminName = explode('_', $user->username);
+if ($adminName[0] == 'Admin' && $user->id == 1) {
+    $commentTemplatePath = 'admin/comment.php';
+} else {
+    $commentTemplatePath = 'users/comment.php';
+}
+?>
+
 <div class="row title">
     <h1>Les Articles</h1>
 </div>
@@ -23,7 +36,7 @@
                 <h1>Les commentaires</h1>
             </div>
             <?php foreach ($comments as $comment): ?>
-                <?php require ROOT . '/app/Views/template/users/comment.php' ?>
+                <?php require ROOT . '/app/Views/template/' . $commentTemplatePath ?>
             <?php endforeach; ?>
         </div>
     </div>
