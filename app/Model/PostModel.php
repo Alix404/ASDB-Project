@@ -40,9 +40,15 @@ class PostModel extends Table
         ", [$id], true);
     }
 
-    public function delete($id) {
+    public function deleteComments($id) {
         $comment = $this->query('SELECT * FROM comments WHERE id = ?', [$id], true);
         $this->query('DELETE FROM comments WHERE id = ?', [$id]);
         $this->query('UPDATE comments SET parent_id = ? WHERE parent_id = ?', [$comment->parent_id, $comment->id]);
     }
+
+    public function delete($post_id) {
+        $this->query('DELETE FROM articles WHERE id = ?', [$post_id]);
+    }
+
+
 }

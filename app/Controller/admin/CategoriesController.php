@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use Core\HTML\BootstrapForm;
+use Core\Session\Session;
 
 class CategoriesController extends AppController
 {
@@ -14,7 +15,6 @@ class CategoriesController extends AppController
 
     public function add()
     {
-
         if (!empty($_POST)) {
             $this->Category->create([
                 'titre' => $_POST['titre']

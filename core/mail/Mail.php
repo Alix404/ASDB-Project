@@ -13,7 +13,7 @@ class Mail
         $subject_body = $parameter['subject'];
         $subject_message = '=?utf-8?B?' . base64_encode($subject_body) . '?=';
 
-        if (isset($parameter['user_id']) && (isset($parameter['token']))) {
+        if (!isset($parameter['user_id']) && (!isset($parameter['token']))) {
             mail($parameter['email'], $subject_message, $parameter['message'], $headers);
         } else {
             mail($parameter['email'], $subject_message, $parameter['message'] . "<br><br><a href='http://localhost:8000/index.php?p=" . $parameter['link'] . "&id=" . $parameter['user_id'] . "&token=" . $parameter['token'] . "'>" . $parameter['link_message'] . "</a>", $headers);

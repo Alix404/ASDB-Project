@@ -28,16 +28,18 @@ class PostsController extends AppController
                 $this->notFound();
             }
             if ((!empty($_POST['category_id'])) && (isset($_POST['category_id']))) {
-
                 $user = Session::getInstance()->read('auth');
+                if ($this->Subscription->isAlreadySubscribed($user, $_POST['category_id'])) {
+                    Session::getInstance()->setFlash('info', "Vous vous êtes déjà abonnés à cette catégorie");
+                    App::getInstance()->redirect('posts.category&id=' . $_POST['category_id']);
+                } else {
                 $this->Subscription->subscribe($user->id, $_POST['category_id']);
                 Mail::sendMail([
                     'email' => $user->email,
                     'subject' => 'Nouvelle abonnement',
                     'message' => "Vous vous êtes abonnés à la catégorie <em><strong>" . $_POST['category_name'] . "</strong></em> en provenance du site web A simple dev's blog, vous recevrez désormais toutes les actualités concernant cette catégorie. À tout moment vous pourrez vous désabonnez en retournant sur le site et en vous rendant sur la page de la catégorie souhaitée.",
                 ]);
-                $posts = $this->Post->lastByCategory($_GET['id']);
-                $categories = $this->Category->all();
+                }
                 $this->index();
             } else {
                 $posts = $this->Post->lastByCategory($_GET['id']);
@@ -84,10 +86,9 @@ class PostsController extends AppController
     }
 
 
-    public
-    function delete()
+    public function delete()
     {
-        $this->Post->delete($_GET['comment_id']);
+        $this->Post->deleteComments($_GET['comment_id']);
         Session::getInstance()->setFlash('success', "Le commentaire a bien été supprimer");
         App::getInstance()->redirect('posts.show&id=' . $_GET['posts_id']);
     }

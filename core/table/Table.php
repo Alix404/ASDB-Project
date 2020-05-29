@@ -25,14 +25,25 @@ class Table
         return $this->query("SELECT * FROM {$this->table} WHERE id = ?", [$id], true);
     }
 
-    public function query($statement, $attribute = null, $one = false)
+    public function query($statement, $attribute = null, $one = false, $class_name = true)
     {
-        if ($attribute) {
+        if ($attribute && $class_name) {
             return $this->db->prepare(
                 $statement,
                 $attribute,
                 str_replace('Model', 'Entity', get_class($this)),
                 $one
+            );
+        } elseif ($attribute && !$class_name) {
+            return $this->db->prepare(
+                $statement,
+                $attribute,
+                null,
+                $one
+            );
+        } elseif (!$class_name) {
+            return $this->db->query(
+                $statement
             );
         } else {
             return $this->db->query(
@@ -55,7 +66,7 @@ class Table
         return $this->query("UPDATE {$this->table} SET $sql_part WHERE id = ?", $attributes, true);
     }
 
-    public function delete($id)
+    public function deleteComments($id)
     {
         return $this->query("DELETE FROM {$this->table} WHERE id = ?", [$id], true);
     }
@@ -87,7 +98,8 @@ class Table
         return $this->query("SELECT * FROM " . $this->table);
     }
 
-    public function lastInsertId() {
+    public function lastInsertId()
+    {
         return $this->db->lastInsertId();
     }
 }

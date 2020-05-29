@@ -10,12 +10,17 @@ class PostsController extends AppController
     {
         parent::__construct();
         $this->loadModel('Post');
+        $this->loadModel('Subscription');
     }
 
     public function add()
     {
 
         if (!empty($_POST)) {
+            $this->loadModel('Category');
+            $category_name = $this->Category->categoryNameFromId($_POST['categories_id']);
+            $users = $this->Subscription->whoIsSubscribed($_POST['categories_id']);
+            $this->Subscription->alertUser($users, $category_name);
             $result = $this->Post->create([
                 'titre' => $_POST['titre'],
                 'contenu' => $_POST['contenu'],
