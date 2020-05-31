@@ -5,8 +5,8 @@
 <form action="" method="post">
 
     <div class="form-group">
-        <label for="">Email</label>
-        <input type="email" name="email" class="form-control"/>
+        <label for="" >Email</label>
+        <input type="email" name="email" class="form-control" required/>
     </div>
 
     <button type="submit" class="btn btn-primary form-button-info">Reinsialiser mon mot de passe</button>

@@ -39,6 +39,9 @@ use Core\Session\Session;
                         <a class="nav-link" href="./curriculum/AlixVendeville.pdf">Mon CV</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./index.php?p=contact.index">Me contacter</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./index.php?p=users.register">S'inscrire</a>
                     </li>
                     <li class="nav-item">

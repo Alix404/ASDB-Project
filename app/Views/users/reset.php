@@ -6,12 +6,12 @@
 
     <div class="form-group">
         <label for="">nouveau mot de passe</label>
-        <input type="password" name="password" class="form-control"/>
+        <input type="password" name="password" class="form-control" required/>
     </div>
 
     <div class="form-group">
         <label for="">Confirmation du nouveau mot de passe</label>
-        <input type="password" name="confirm_password" class="form-control"/>
+        <input type="password" name="confirm_password" class="form-control" required/>
     </div>
 
     <button type="submit" class="btn btn-primary form-button-info">Réinisialiser mon mot de passe</button>

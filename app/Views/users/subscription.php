@@ -3,8 +3,8 @@
 </div>
 
 <form action="" class="category-news-form" method="post">
-    <input type="hidden" name="category_id" value="<?= $category->id ?>">
-    <input type="hidden" name="category_name" value="<?= $category->titre ?>">
+    <input type="hidden" name="category_id" value="<?= $category->id ?>" required>
+    <input type="hidden" name="category_name" value="<?= $category->titre ?>" required>
     <button type="submit" class="btn form-button-info">M'abonner à cette catégorie</button>
 </form>
 

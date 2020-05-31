@@ -18,7 +18,7 @@ class Validator
 
     public function isAlpha($field, $errorMsg)
     {
-        if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
+        if (!preg_match('/^[a-zA-Z0-9_-]+$/', $this->getField($field))) {
             $this->errors[$field] = $errorMsg;
         }
     }

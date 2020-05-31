@@ -23,7 +23,7 @@ $form = new BootstrapForm($_POST);
 
 <form method="post">
     <?= $form->input('titre', 'Titre de l\'article'); ?>
-    <?= $form->input('contenu', 'Contenu', ['type' => 'textarea']); ?>
+    <?= $form->input('contenu', 'Contenu', ['type' => 'textarea', 'required' => true]); ?>
     <?= $form->select('categories_id', 'Catégorie', $categories); ?>
     <button class="btn form-button-info">Sauvegarder</button>
 </form>
