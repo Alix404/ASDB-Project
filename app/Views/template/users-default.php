@@ -36,6 +36,9 @@ use Core\Session\Session;
                         <a class="nav-link" href="./index.php?p=posts.index">Blog</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="./curriculum/AlixVendeville.pdf">Mon CV</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="./index.php?p=users.logout">Déconnexion</a>
                     </li>
                     <li class="nav-item">

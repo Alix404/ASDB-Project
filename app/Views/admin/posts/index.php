@@ -7,9 +7,10 @@
 <table class="table">
     <thead>
     <tr>
-        <td>ID</td>
-        <td>Titre</td>
-        <td>Actions</td>
+        <td><strong>ID</strong></td>
+        <td><strong>Titre</strong></td>
+        <td><strong>Dernière MàJ</strong></td>
+        <td><strong>Action</strong></td>
     </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
         <tr>
             <td><?= $post->id; ?></td>
             <td><?= $post->titre; ?></td>
+            <td><?= $post->date_update; ?></td>
             <td>
                 <a class="btn form-button-edit" href="?p=admin.posts.edit&id=<?= $post->id ?>">Editer</a>
 

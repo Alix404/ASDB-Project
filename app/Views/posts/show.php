@@ -7,8 +7,7 @@
             <div class="card">
                 <h2 class="card-header"><?= $articles->titre; ?></h2>
                 <div class="card-body">
-                    <p><em><?= $articles->categorie; ?></em></p>
-
+                    <p><strong><?= $articles->categorie; ?></strong><strong>  |  </strong><em><small><?= $articles->date_update; ?></small></em></p>
                     <p><?= $articles->contenu; ?></p>
                     <a href="index.php?p=posts.index">revenir à l'Accueil</a>
                 </div>
@@ -27,8 +26,7 @@
             <div class="card">
                 <h2 class="card-header"><?= $articles->titre; ?></h2>
                 <div class="card-body">
-                    <p><em><?= $articles->categorie; ?></em></p>
-
+                    <p><strong><?= $articles->categorie; ?></strong><strong>  |  </strong><em><small><?= $articles->date_update; ?></small></em></p>
                     <p><?= $articles->contenu; ?></p>
                     <a href="index.php?p=posts.index">revenir à l'Accueil</a>
                 </div>

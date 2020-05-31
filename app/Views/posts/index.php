@@ -10,7 +10,7 @@
                 <div class="card">
                     <h2 class="card-header"><?= $post->titre; ?></h2>
                     <div class="card-body">
-                        <p><em><?= $post->categorie; ?></em></p>
+                        <p><strong><?= $post->categorie; ?></strong><strong>  |  </strong><em><small><?= $post->date_update; ?></small></em></p>
                         <p><?= $post->extrait; ?></p>
                     </div>
                 </div>

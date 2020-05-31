@@ -23,11 +23,13 @@ class SubscriptionModel extends Table
     {
 
         $entries = $this->query('SELECT user_id FROM subscription WHERE category_id = ?', [$category_id], false, false);
-
-        foreach ($entries as $user) {
-            $users[] = $this->query('SELECT * FROM users WHERE id = ?', [$user->user_id], true, false);
+        if (!empty($entries) && $entries != false) {
+            foreach ($entries as $user) {
+                $users[] = $this->query('SELECT * FROM users WHERE id = ?', [$user->user_id], true, false);
+            }
+            return $users;
         }
-        return $users;
+        return false;
     }
 
     public function alertUser($users, $category)

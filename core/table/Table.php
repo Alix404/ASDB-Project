@@ -80,6 +80,7 @@ class Table
             $attributes[] = $v;
         }
         $sql_part = implode(', ', $sql_parts);
+
         return $this->query("INSERT INTO {$this->table} SET $sql_part", $attributes, true);
     }
 
