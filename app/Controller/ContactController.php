@@ -7,14 +7,24 @@ namespace App\Controller;
 use Core\HTML\BootstrapForm;
 use Core\Mail\Mail;
 
+/**
+ * Class ContactController
+ * @package App\Controller
+ */
 class ContactController extends AppController
 {
+    /**
+     * ContactController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->loadModel('Contact');
     }
 
+    /**
+     * Render the contact page
+     */
     public function index()
     {
         if (!empty($_POST)) {

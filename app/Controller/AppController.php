@@ -8,15 +8,29 @@ use Core\Controller\Controller;
 use Core\HTML\BootstrapForm;
 use Core\Session\Session;
 
+/**
+ * Class AppController
+ * @package App\Controller
+ */
 class AppController extends Controller
 {
+    /**
+     * @var string
+     */
     protected $template = 'default';
 
+    /**
+     * AppController constructor.
+     */
     public function __construct()
     {
         $this->viewPath = ROOT . '/app/Views/';
     }
 
+    /**
+     * @return mixed
+     * Return all validated comments
+     */
     protected function sortComments()
     {
         $this->loadModel('Comment');
@@ -37,11 +51,22 @@ class AppController extends Controller
         return $comments;
     }
 
+    /**
+     * @param $modelName
+     */
     protected function loadModel($modelName)
     {
         $this->$modelName = App::getInstance()->getTable($modelName);
     }
 
+    /**
+     * @param $path
+     * @param $articles
+     * @param null $comments
+     * @param bool $isForm
+     *
+     * Render all comments by post and rights of user
+     */
     protected function showComments($path, $articles, $comments = null, $isForm = true)
     {
         $form = new BootstrapForm($_POST);
@@ -62,6 +87,10 @@ class AppController extends Controller
             }
         }
     }
+
+    /**
+     * Render a form to allow users to send a comment
+     */
     private function comment()
     {
         $this->loadModel('Comment');

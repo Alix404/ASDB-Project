@@ -7,18 +7,41 @@ namespace App\Model;
 use Core\Mail\Mail;
 use Core\Table\Table;
 
+/**
+ * Class SubscriptionModel
+ * @package App\Model
+ */
 class SubscriptionModel extends Table
 {
+    /**
+     * @param $user_id
+     * @param $category_id
+     *
+     * Add a subscription in the database
+     */
     public function subscribe($user_id, $category_id)
     {
         $this->query('INSERT INTO subscription SET user_id = ?, category_id = ?', [$user_id, $category_id]);
     }
 
+    /**
+     * @param $user
+     * @param $category_id
+     * @return mixed
+     *
+     * Find if a user is already subscribed
+     */
     public function isAlreadySubscribed($user, $category_id)
     {
         return $this->query('SELECT * FROM subscription WHERE user_id = ? AND category_id = ?', [$user->id, $category_id], true);
     }
 
+    /**
+     * @param $category_id
+     * @return bool
+     *
+     * Find all subcribed users with the category id
+     */
     public function whoIsSubscribed($category_id)
     {
 
@@ -32,6 +55,12 @@ class SubscriptionModel extends Table
         return false;
     }
 
+    /**
+     * @param $users
+     * @param $category
+     *
+     * Send a mail to all users who are subscribed to this category
+     */
     public function alertUser($users, $category)
     {
         foreach ($users as $user) {

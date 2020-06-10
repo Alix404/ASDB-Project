@@ -3,16 +3,25 @@
 namespace App\Controller\Admin;
 
 use Core\HTML\BootstrapForm;
-use Core\Session\Session;
 
+/**
+ * Class CategoriesController
+ * @package App\Controller\Admin
+ */
 class CategoriesController extends AppController
 {
+    /**
+     * CategoriesController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->loadModel('Category');
     }
 
+    /**
+     * Add a category
+     */
     public function add()
     {
         if (!empty($_POST)) {
@@ -25,12 +34,18 @@ class CategoriesController extends AppController
         $this->render('admin.categories.add', compact('form'));
     }
 
+    /**
+     * Show the index page of Admin center
+     */
     public function index()
     {
         $items = $this->Category->all();
         $this->render('admin.categories.index', compact('items'));
     }
 
+    /**
+     * Edit a category
+     */
     public function edit()
     {
         if (!empty($_POST)) {
@@ -44,6 +59,9 @@ class CategoriesController extends AppController
         $this->render('admin.categories.edit', compact('form'));
     }
 
+    /**
+     * Delete a category
+     */
     public function delete()
     {
         if (!empty($_POST)) {

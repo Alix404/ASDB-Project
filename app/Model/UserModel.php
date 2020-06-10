@@ -9,10 +9,20 @@ use Core\String\Str;
 use Core\Table\Table;
 use Core\validator\Validator;
 
+/**
+ * Class UserModel
+ * @package App\Model
+ */
 class UserModel extends Table
 {
+    /**
+     * @var string
+     */
     protected $table = 'users';
 
+    /**
+     * @return array
+     */
     public function validateRegister()
     {
         $validator = new Validator($_POST);
@@ -31,6 +41,12 @@ class UserModel extends Table
         return $errors;
     }
 
+    /**
+     * @param $db
+     * @param $user_id
+     * @param $token
+     * @return bool
+     */
     public function validateConfirm($db, $user_id, $token)
     {
         $user = $db->prepare('SELECT * FROM users WHERE id = ?', [$user_id], null, true);
@@ -43,6 +59,9 @@ class UserModel extends Table
         }
     }
 
+    /**
+     * @return array
+     */
     public function validateResetPassword()
     {
         $validator = new Validator($_POST);
@@ -51,6 +70,11 @@ class UserModel extends Table
         return $errors;
     }
 
+    /**
+     * @param Database $db
+     * @param $username
+     * @return array
+     */
     public function validateLogin(Database $db, $username)
     {
         $user = $db->prepare('SELECT * FROM users WHERE (username = :username OR email= :username) AND confirmed_at IS NOT NULL', ['username' => $username], null, true);
@@ -61,6 +85,9 @@ class UserModel extends Table
         return $errors;
     }
 
+    /**
+     * @return array
+     */
     public function validateAccount()
     {
         $validator = new Validator($_POST);
@@ -69,6 +96,10 @@ class UserModel extends Table
         return $errors;
     }
 
+    /**
+     * @param Database $db
+     * @param $user_id
+     */
     public function remember(Database $db, $user_id)
     {
         $remember_token = Str::str_random(255);
@@ -76,6 +107,12 @@ class UserModel extends Table
         setcookie('remember', $user_id . '//' . $remember_token . sha1($user_id . 'ratonLaveurs'), time() + 60 * 60 * 24 * 7);
     }
 
+    /**
+     * @param Database $db
+     * @param $user_id
+     * @param $token
+     * @return mixed
+     */
     public function checkResetToken(Database $db, $user_id, $token)
     {
         return $db->prepare(
@@ -86,6 +123,11 @@ class UserModel extends Table
         );
     }
 
+    /**
+     * @param Database $db
+     * @param $user_id
+     * @return bool
+     */
     public function validateReset(Database $db, $user_id) {
         $validator = new Validator($_POST);
         $validator->isConfirmed('password', 'Les deux mots de passes ne correspondent pas');

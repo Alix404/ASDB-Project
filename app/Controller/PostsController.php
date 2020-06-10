@@ -6,9 +6,16 @@ use App;
 use Core\Mail\Mail;
 use Core\Session\Session;
 
+/**
+ * Class PostsController
+ * @package App\Controller
+ */
 class PostsController extends AppController
 {
 
+    /**
+     * PostsController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,6 +25,9 @@ class PostsController extends AppController
 
     }
 
+    /**
+     * Allows users to subscribe to a category
+     */
     public function category()
     {
         $user = Session::getInstance()->read('auth');
@@ -61,6 +71,9 @@ class PostsController extends AppController
 
     }
 
+    /**
+     * Show index page
+     */
     public function index()
     {
         $posts = $this->Post->last();
@@ -68,6 +81,9 @@ class PostsController extends AppController
         $this->render('posts.index', compact('posts', 'categories'));
     }
 
+    /**
+     * Show post with rights of user
+     */
     public function show()
     {
         $user = Session::getInstance()->read('auth');
@@ -86,6 +102,9 @@ class PostsController extends AppController
     }
 
 
+    /**
+     *
+     */
     public function delete()
     {
         $this->Post->deleteComments($_GET['comment_id']);

@@ -9,8 +9,15 @@ use Core\Mail\Mail;
 use Core\Session\Session;
 use Core\String\Str;
 
+/**
+ * Class UsersController
+ * @package App\Controller
+ */
 class UsersController extends AppController
 {
+    /**
+     * UsersController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,6 +25,9 @@ class UsersController extends AppController
         $this->loadModel('Subscription');
     }
 
+    /**
+     * Validate that the user has confirmed his mail
+     */
     public function confirm()
     {
         if (!empty($_GET)) {
@@ -37,6 +47,9 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * Render the login form and login the user
+     */
     public function login()
     {
         if ($this->user()) {
@@ -74,6 +87,11 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * @return bool
+     *
+     * Find if a the user is already in the session
+     */
     private function user()
     {
         if (Session::getInstance()->read('auth') == null) {
@@ -83,11 +101,19 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * @param $user
+     *
+     * Save the current user in the session
+     */
     private function connect($user)
     {
         Session::getInstance()->write('auth', $user);
     }
 
+    /**
+     * render the account page of the current user
+     */
     public function account()
     {
         $this->restrict();
@@ -108,6 +134,9 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * Restrict access to certain pages to only logged users
+     */
     private function restrict()
     {
         if (!Session::getInstance()->read('auth')) {
@@ -115,6 +144,12 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * @param Database $db
+     * @return bool
+     *
+     * Find in cookies the current user to login him
+     */
     public function connectFromCookie(Database $db)
     {
         if (isset($_COOKIE['remember']) && !$this->user()) {
@@ -138,6 +173,9 @@ class UsersController extends AppController
         return false;
     }
 
+    /**
+     * Logout the current user
+     */
     public function logout()
     {
         setcookie('remember', null, -1);
@@ -146,6 +184,9 @@ class UsersController extends AppController
         App::getInstance()->redirect('posts.index');
     }
 
+    /**
+     * Render the register form and send a mail confirmation to the user
+     */
     public function register()
     {
         if (!empty($_POST)) {
@@ -173,6 +214,9 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * Render the reset password form and update the user password in the database
+     */
     public function reset()
     {
         if (isset($_GET['id']) && isset($_GET['token'])) {
@@ -200,6 +244,9 @@ class UsersController extends AppController
     }
 
 
+    /**
+     * Allows the user to access to the reset page
+     */
     public function forget()
     {
         if (!empty($_POST)) {

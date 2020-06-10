@@ -4,8 +4,15 @@ namespace App\Controller\Admin;
 
 use Core\HTML\BootstrapForm;
 
+/**
+ * Class PostsController
+ * @package App\Controller\Admin
+ */
 class PostsController extends AppController
 {
+    /**
+     * PostsController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -13,6 +20,9 @@ class PostsController extends AppController
         $this->loadModel('Subscription');
     }
 
+    /**
+     * Add a post
+     */
     public function add()
     {
 
@@ -46,6 +56,9 @@ class PostsController extends AppController
         $this->render('admin.posts.add', compact('categories', 'form'));
     }
 
+    /**
+     * Show the index page of Admin Center
+     */
     public
     function index()
     {
@@ -53,6 +66,9 @@ class PostsController extends AppController
         $this->render('admin.posts.index', compact('posts'));
     }
 
+    /**
+     * Edit a post
+     */
     public
     function edit()
     {
@@ -74,6 +90,9 @@ class PostsController extends AppController
         $this->render('admin.posts.edit', compact('categories', 'form'));
     }
 
+    /**
+     * Delete a post
+     */
     public
     function delete()
     {
@@ -81,10 +100,5 @@ class PostsController extends AppController
             $result = $this->Post->delete($_POST['id']);
             return $this->index();
         }
-    }
-
-    public function cv()
-    {
-        $this->render('posts.cv');
     }
 }

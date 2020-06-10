@@ -7,14 +7,24 @@ namespace App\Controller\admin;
 use App;
 use Core\Session\Session;
 
+/**
+ * Class CommentsController
+ * @package App\Controller\admin
+ */
 class CommentsController extends AppController
 {
+    /**
+     * CommentsController constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->loadModel('Comment');
     }
 
+    /**
+     * Validate a comment, proof that an Admin approved this comment
+     */
     public function validation()
     {
         $comments = $this->Comment->allComments();
