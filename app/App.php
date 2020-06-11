@@ -14,7 +14,7 @@ class App
     public static function load()
     {
         session_start();
-        require "../vendor/autoload.php";
+        require ROOT . "/vendor/autoload.php";
     }
 
     public static function getAuth()
