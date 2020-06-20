@@ -1,4 +1,4 @@
-<h1>Admisnistrer les articles</h1>
+<h1>Administrer les articles</h1>
 
 <p>
     <a href="?p=admin.posts.add" class="btn form-button-add">Ajouter</a>
@@ -10,7 +10,7 @@
         <td><strong>ID</strong></td>
         <td><strong>Titre</strong></td>
         <td><strong>Dernière MàJ</strong></td>
-        <td><strong>Action</strong></td>
+        <td><strong>Actions</strong></td>
     </tr>
     </thead>
     <tbody>

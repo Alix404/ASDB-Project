@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App;
-use Core\Mail\Mail;
+use Core\mailer\Mailer;
 use Core\Session\Session;
 
 /**
@@ -40,14 +40,15 @@ class PostsController extends AppController
             if ((!empty($_POST['category_id'])) && (isset($_POST['category_id']))) {
                 $user = Session::getInstance()->read('auth');
                 if ($this->Subscription->isAlreadySubscribed($user, $_POST['category_id'])) {
-                    Session::getInstance()->setFlash('info', "Vous vous êtes déjà abonnés à cette catégorie");
+                    Session::getInstance()->setFlash('info', "Vous vous êtes déjà abonné à cette catégorie");
                     App::getInstance()->redirect('posts.category&id=' . $_POST['category_id']);
                 } else {
                 $this->Subscription->subscribe($user->id, $_POST['category_id']);
-                Mail::sendMail([
+                $mailer = new Mailer();                
+                $mailer->sendMail([
                     'email' => $user->email,
-                    'subject' => 'Nouvelle abonnement',
-                    'message' => "Vous vous êtes abonnés à la catégorie <em><strong>" . $_POST['category_name'] . "</strong></em> en provenance du site web A simple dev's blog, vous recevrez désormais toutes les actualités concernant cette catégorie. À tout moment vous pourrez vous désabonnez en retournant sur le site et en vous rendant sur la page de la catégorie souhaitée.",
+                    'subject' => 'Nouvel abonnement',
+                    'message' => "Vous vous êtes abonné à la catégorie <em><strong>" . $_POST['category_name'] . "</strong></em> en provenance du site web A simple dev's blog, vous recevrez désormais toutes les actualités concernant cette catégorie. À tout moment vous pourrez vous désabonner en retournant sur le site et en vous rendant sur la page de la catégorie souhaitée.",
                 ]);
                 }
                 $this->index();
@@ -108,7 +109,7 @@ class PostsController extends AppController
     public function delete()
     {
         $this->Post->deleteComments($_GET['comment_id']);
-        Session::getInstance()->setFlash('success', "Le commentaire a bien été supprimer");
+        Session::getInstance()->setFlash('success', "Le commentaire a bien été supprimé");
         App::getInstance()->redirect('posts.show&id=' . $_GET['posts_id']);
     }
 }

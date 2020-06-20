@@ -1,5 +1,5 @@
 <div class="row title">
-    <h1>Vos commentaires en attentes de validation</h1>
+    <h1>Vos commentaires en attente de validation</h1>
 </div>
 <?php if (!empty($comments)) : ?>
     <?php foreach ($comments as $comment): ?>

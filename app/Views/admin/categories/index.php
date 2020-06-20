@@ -2,7 +2,7 @@
 $categories = App::getInstance()->getTable('Category')->all();
 ?>
 
-<h1>Admisnistrer les catégorie</h1>
+<h1>Administrer les catégories</h1>
 
 <p>
     <a href="?p=admin.categories.add" class="btn form-button-add">Ajouter</a>

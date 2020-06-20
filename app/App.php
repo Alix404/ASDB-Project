@@ -13,6 +13,7 @@ class App
 
     public static function load()
     {
+        ini_set( 'display_errors', 1 ); 
         session_start();
         require ROOT . "/vendor/autoload.php";
     }
@@ -50,7 +51,8 @@ class App
     }
 
     public function redirect($location) {
+
         header("Location: index.php?p=$location");
         exit();
     }
-}
+}	

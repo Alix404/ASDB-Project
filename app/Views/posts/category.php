@@ -20,8 +20,8 @@
             <div class="card">
                 <h1 class="card-header"><?= $category->titre; ?></h1>
                 <div class="card-body">
-                    <p>Il n'y a malheureusement aucuns articles dans cette catégorie, elle sera soit supprimée, soit
-                        réalimenté ultérieurement</p><br><br><a href="index.php?p=posts.index">revenir à l'Accueil</a>
+                    <p>Il n'y a malheureusement aucun article dans cette catégorie, elle sera soit supprimée, soit
+                        réalimentée ultérieurement</p><br><br><a href="index.php?p=posts.index">revenir à l'Accueil</a>
                 </div>
             </div>
         <?php endif; ?>

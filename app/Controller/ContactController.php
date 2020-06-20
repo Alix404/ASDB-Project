@@ -5,7 +5,8 @@ namespace App\Controller;
 
 
 use Core\HTML\BootstrapForm;
-use Core\Mail\Mail;
+use Core\mailer\Mailer;
+use Core\Session\Session;
 
 /**
  * Class ContactController
@@ -29,11 +30,13 @@ class ContactController extends AppController
     {
         if (!empty($_POST)) {
             $adminMail = $this->Contact->AdminMail();
-            Mail::sendMail([
+            $mailer = new Mailer();            
+            $mailer->sendMail([
                 'email' => $adminMail->email,
                 'subject' => $_POST['subject'] . " mail envoyé par " . $_POST['username'],
                 'message' => $_POST['message'] . "<br><br>Voici le mail de l'utilisateur " . $_POST['username'] . ": " . $_POST['email']
             ]);
+            Session::getInstance()->setFlash('success', "Votre email a correctement été envoyé");
             $form = new BootstrapForm($_POST);
             $this->render('contact.index', compact('form'));
         } else {
@@ -41,4 +44,4 @@ class ContactController extends AppController
             $this->render('contact.index', compact('form'));
         }
     }
-}
+}		

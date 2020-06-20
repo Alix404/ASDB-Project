@@ -5,7 +5,7 @@ namespace App\Controller;
 use App;
 use Core\Database\Database;
 use Core\HTML\BootstrapForm;
-use Core\Mail\Mail;
+use Core\mailer\Mailer;
 use Core\Session\Session;
 use Core\String\Str;
 
@@ -35,14 +35,14 @@ class UsersController extends AppController
             $user = $this->User->validateConfirm($db, $_GET['id'], $_GET['token']);
             if ($user) {
                 Session::getInstance()->write('auth', $user);
-                Session::getInstance()->setFlash('success', 'Votre compte à bien été validé');
+                Session::getInstance()->setFlash('success', 'Votre compte a bien été validé');
                 App::getInstance()->redirect('users.login');
             } else {
                 Session::getInstance()->setFlash('danger', "Ce token n'est pas valide");
                 App::getInstance()->redirect('posts.index');
             }
         } else {
-            Session::getInstance()->setFlash('danger', 'Un problème est survenue lors de la récupération de l\'URL');
+            Session::getInstance()->setFlash('danger', 'Un problème est survenu lors de la récupération de l\'URL');
             App::getInstance()->redirect('posts.index');
         }
     }
@@ -71,7 +71,7 @@ class UsersController extends AppController
                         $pass = $_POST['password'];
                         $password = explode('_', $pass);
                         if ($user->id == 0 && $username[0] == 'Admin' && $password[0] == 'Admin') {
-                            Session::getInstance()->setFlash('info', "Vous vous êtes connecté au compte adminisatreur");
+                            Session::getInstance()->setFlash('info', "Vous vous êtes connecté au compte administrateur");
                             App::getInstance()->redirect('admin.posts.index');
                         }
                         Session::getInstance()->setFlash('success', "Vous êtes maintenant connecté");
@@ -140,7 +140,7 @@ class UsersController extends AppController
     private function restrict()
     {
         if (!Session::getInstance()->read('auth')) {
-            Session::getInstance()->setFlash('danger', "Vous n'avez pas les droits nécessaire pour accèder à cette page");
+            Session::getInstance()->setFlash('danger', "Vous n'avez pas les droits nécessaires pour accéder à cette page");
         }
     }
 
@@ -180,7 +180,7 @@ class UsersController extends AppController
     {
         setcookie('remember', null, -1);
         Session::getInstance()->delete('auth');
-        Session::getInstance()->setFlash('success', 'Vous êtes maintentant déconnecté');
+        Session::getInstance()->setFlash('success', 'Vous êtes maintenant déconnecté');
         App::getInstance()->redirect('posts.index');
     }
 
@@ -193,17 +193,18 @@ class UsersController extends AppController
             $errors = $this->User->validateRegister($_POST['username'], $_POST['password'], $_POST['email']);
             if (empty($errors)) {
                 $user = App::getAuth()->register($_POST['username'], $_POST['password'], $_POST['email']);
-                Mail::sendMail([
+$mailer = new Mailer();                
+$mailer->sendMail([
                         'email' => $_POST['email'],
                         'subject' => "Confirmer votre compte",
-                        'message' => "Afin de validé votre inscription, veuillez suivre ce lien",
+                        'message' => "Afin de valider votre inscription, veuillez suivre ce lien",
                         'link' => "users.confirm",
                         'link_message' => "Confirmer mon compte",
                         'user_id' => $user->id,
                         'token' => $user->confirmation_token
                     ]
                 );
-                Session::getInstance()->setFlash('success', "Un email de confirmation, vous à été envoyé");
+                Session::getInstance()->setFlash('success', "Un email de confirmation vous a été envoyé");
                 App::getInstance()->redirect('users.login');
             }
             $form = new BootstrapForm($_POST);
@@ -226,7 +227,7 @@ class UsersController extends AppController
                 if (!empty($_POST)) {
                     $valid = $this->User->validateReset($db, $user->id);
                     if ($valid) {
-                        Session::getInstance()->setFlash('success', 'Votre mot de passe à bien été modifié');
+                        Session::getInstance()->setFlash('success', 'Votre mot de passe a bien été modifié');
                         App::getInstance()->redirect('users.login');
                     } else {
                         Session::getInstance()->setFlash('danger', "Une erreur est survenue lors de votre changement de mot de passe");
@@ -257,12 +258,13 @@ class UsersController extends AppController
                 if ($user) {
                     $reset_token = Str::str_random(60);
                     $db->prepare('UPDATE users SET reset_token = ?, reset_at = NOW() WHERE id = ?', [$reset_token, $user->id]);
-                    Mail::sendMail([
+                    $mailer = new Mailer();                
+$mailer->sendMail([
                             'email' => $_POST['email'],
                             'subject' => "Réinitialisation de votre mot de passe",
-                            'message' => "Pour réinisialisé votre mot de passe, cliquer sur ce lien",
+                            'message' => "Pour réinitialiser votre mot de passe, cliquez sur ce lien",
                             'link' => "users.reset",
-                            'link_message' => "Réinsialiser mon mot de passe",
+                            'link_message' => "Réinitialiser mon mot de passe",
                             'user_id' => $user->id,
                             'token' => $reset_token
                         ]

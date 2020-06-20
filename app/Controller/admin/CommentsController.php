@@ -35,7 +35,7 @@ class CommentsController extends AppController
             if (isset($_POST['validation']) && $_POST['validation'] == 1) {
                 $this->Comment->validateThis($_POST['comment_id'], $_POST['validation']);
                 unset($_POST['validation']);
-                Session::getInstance()->setFlash('success', "Le commentaire à bien été validé");
+                Session::getInstance()->setFlash('success', "Le commentaire a bien été validé");
                 App::getInstance()->redirect('admin.comments.validation');
             } else {
                 $this->render('admin.comments.validation', compact('comments'));

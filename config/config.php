@@ -1,8 +1,8 @@
 <?php
 
 return array (
-    "db_user" => "root",
-    "db_pass" => "",
-    "db_host" => "localhost",
-    "db_name" => "asdb-project"
+    "db_user" => "avprojecclasdb",
+    "db_pass" => "BjDD55NxwCGmQk4",
+    "db_host" => "avprojecclasdb.mysql.db",
+    "db_name" => "avprojecclasdb"
 );

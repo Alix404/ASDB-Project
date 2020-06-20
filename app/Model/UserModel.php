@@ -80,7 +80,7 @@ class UserModel extends Table
         $user = $db->prepare('SELECT * FROM users WHERE (username = :username OR email= :username) AND confirmed_at IS NOT NULL', ['username' => $username], null, true);
         $errors = [];
         if (!$user) {
-            $errors[$username] = 'Identifiants incorrect';
+            $errors[$username] = 'Identifiants incorrects';
         }
         return $errors;
     }

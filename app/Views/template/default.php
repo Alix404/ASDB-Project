@@ -33,19 +33,19 @@ use Core\Session\Session;
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php?p=posts.index">Blog</a>
+                        <a class="nav-link" href= "./index.php?p=posts.index">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./curriculum/AlixVendeville.pdf">Mon CV</a>
+                        <a class="nav-link" href= "./curriculum/AlixVendeville.pdf">Mon CV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php?p=contact.index">Me contacter</a>
+                        <a class="nav-link" href= "./index.php?p=contact.index">Me contacter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php?p=users.register">S'inscrire</a>
+                        <a class="nav-link" href= "./index.php?p=users.register">S'inscrire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./index.php?p=users.login">Connexion</a>
+                        <a class="nav-link" href= "./index.php?p=users.login">Connexion</a>
                     </li>
                 </ul>
             </div>

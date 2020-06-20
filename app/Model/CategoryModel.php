@@ -25,4 +25,9 @@ class CategoryModel extends Table
     {
         return $this->query('SELECT titre FROM categories WHERE id = ?', [$category_id], true, true);
     }
+
+
+    public function delete($post_id) {
+        $this->query('DELETE FROM categories WHERE id = ?', [$post_id]);
+    }
 }
